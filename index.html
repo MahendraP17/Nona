@@ -11,10 +11,10 @@
 <body>
   <div class="card">
     <div class="back">
-      <img src="images/Birthday02.png" alt="" />
+      <img src="images/birthday02.png" alt="" />
     </div>
     <div class="front">
-      <img src="images/Birthday03.png" alt="" />
+      <img src="images/birthday03.png" alt="" />
     </div>
 
     <!-- This will now be hidden until the card opens -->
@@ -33,13 +33,39 @@
 
 
       <!-- Audio section -->
-      <div class="audio-section">
-  <audio controls src="audio/voice1.mp3"></audio>
-  <audio controls src="audio/audio2.mp3"></audio>
+      <!-- Audio section -->
+<div class="audio-section">
+  <audio id="voice1" src="audio/voice1.mp3"></audio>
+  <audio id="voice2" controls src="audio/audio2.mp3"></audio>
 </div>
+
 
     </div>
   </div>
+  <script>
+  const card = document.querySelector('.card');
+  const voice1 = document.getElementById('voice1');
+  const voice2 = document.getElementById('voice2');
+  let played = false;
+
+  // Play voice1 only once on card hover
+  card.addEventListener('mouseenter', () => {
+    if (!played) {
+      voice1.play();
+      played = true;
+    }
+  });
+
+  // When voice2 starts, stop voice1
+  voice2.addEventListener('play', () => {
+    if (!voice1.paused) {
+      voice1.pause();
+      voice1.currentTime = 0;
+    }
+  });
+</script>
+
+
 </body>
 
 </html>
